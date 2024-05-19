@@ -11,9 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Creating this site is my work for homework 2. I will eventually edit this site to include all my homework assignements for this course.
 
-Homework 2 <https://brecchia.github.io/RecchiaBIOL6100/Homework_02>
+[Homework 2](https://brecchia.github.io/RecchiaBIOL6100/Homework_02)
 
-Homework 3 <>
+[Homework 3](https://brecchia.github.io/RecchiaBIOL6100/Homework_03)
 
 ## R Markdown
 
