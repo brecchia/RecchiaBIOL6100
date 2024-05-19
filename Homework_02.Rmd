@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Creating this site is my work for homework 2. I will eventually edit this site to include all my homework assignements for this course.
+
 
 ## R Markdown
 
