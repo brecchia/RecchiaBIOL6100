@@ -9,28 +9,28 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Creating this site is my work for homework 2. I will eventually edit this site to include all my homework assignements for this course.
+# BIOL 6100 Computational Biology
+
+[Homework 1](https://brecchia.github.io/RecchiaBIOL6100/Homework_01)
 
 [Homework 2](https://brecchia.github.io/RecchiaBIOL6100/Homework_02)
 
 [Homework 3](https://brecchia.github.io/RecchiaBIOL6100/Homework_03)
 
-## R Markdown
+[Homework 4](https://brecchia.github.io/RecchiaBIOL6100/Homework_04)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+[Homework 5](https://brecchia.github.io/RecchiaBIOL6100/Homework_05)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+[Homework 6](https://brecchia.github.io/RecchiaBIOL6100/Homework_06)
 
-```{r cars}
-summary(cars)
-```
+[Homework 7](https://brecchia.github.io/RecchiaBIOL6100/Homework_07)
 
-## Including Plots
+[Homework 8](https://brecchia.github.io/RecchiaBIOL6100/Homework_09)
 
-You can also embed plots, for example:
+[Homework 9](https://brecchia.github.io/RecchiaBIOL6100/Homework_09)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+[Homework 10](https://brecchia.github.io/RecchiaBIOL6100/Homework_10)
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+[Homework 11](https://brecchia.github.io/RecchiaBIOL6100/Homework_11)
+
+[Homework 12](https://brecchia.github.io/RecchiaBIOL6100/Homework_12)
