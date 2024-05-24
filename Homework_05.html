@@ -368,78 +368,48 @@ shuffle &lt;- sample(vec,n_dims^2,replace=FALSE)
 m &lt;- matrix(data=shuffle,nrow=n_dims, ncol=n_dims)
 
 print(m)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
-## [1,]   42   16   21   20   29   10   45
-## [2,]   48   44    5   40    4    2   23
-## [3,]   14   11   17    8   34   41   26
-## [4,]    6    3    7   36   27   18   25
-## [5,]    1   31   33   35   12   13   47
-## [6,]   28   49   39   37   46   30   15
-## [7,]   38   24   32   43    9   19   22</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]   12    8   16   11
+## [2,]    2    1    7    9
+## [3,]   10    6   15    3
+## [4,]   14    5   13    4</code></pre>
 <pre class="r"><code>m2 &lt;- t(m)
 
 print(m2) #the matrix was transposed (e.g. [1,2] is now [2,1]</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
-## [1,]   42   48   14    6    1   28   38
-## [2,]   16   44   11    3   31   49   24
-## [3,]   21    5   17    7   33   39   32
-## [4,]   20   40    8   36   35   37   43
-## [5,]   29    4   34   27   12   46    9
-## [6,]   10    2   41   18   13   30   19
-## [7,]   45   23   26   25   47   15   22</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]   12    2   10   14
+## [2,]    8    1    6    5
+## [3,]   16    7   15   13
+## [4,]   11    9    3    4</code></pre>
 <pre class="r"><code>sum(m2[1,])</code></pre>
-<pre><code>## [1] 177</code></pre>
+<pre><code>## [1] 38</code></pre>
 <pre class="r"><code>mean(m2[1,])</code></pre>
-<pre><code>## [1] 25.28571</code></pre>
+<pre><code>## [1] 9.5</code></pre>
 <pre class="r"><code>sum(m2[n_dims,])</code></pre>
-<pre><code>## [1] 203</code></pre>
+<pre><code>## [1] 27</code></pre>
 <pre class="r"><code>mean(m2[n_dims,])</code></pre>
-<pre><code>## [1] 29</code></pre>
+<pre><code>## [1] 6.75</code></pre>
 <pre class="r"><code>eigen(m2)</code></pre>
 <pre><code>## eigen() decomposition
 ## $values
-## [1] 171.10825+ 0.00000i  27.68937+24.43841i  27.68937-24.43841i
-## [4]  29.99266+ 0.00000i -13.24140+25.30834i -13.24140-25.30834i
-## [7] -26.99687+ 0.00000i
+## [1] 35.655519+0.000000i -3.560947+2.312189i -3.560947-2.312189i
+## [4]  3.466375+0.000000i
 ## 
 ## $vectors
-##              [,1]                   [,2]                   [,3]          [,4]
-## [1,] 0.3839365+0i  0.5270944+0.00000000i  0.5270944+0.00000000i  0.6030066+0i
-## [2,] 0.3597106+0i -0.1200471+0.50258529i -0.1200471-0.50258529i -0.1428968+0i
-## [3,] 0.3198795+0i -0.2551619-0.15484912i -0.2551619+0.15484912i  0.1530026+0i
-## [4,] 0.4858235+0i  0.2544822+0.07904704i  0.2544822-0.07904704i -0.7302322+0i
-## [5,] 0.3350944+0i -0.1803746-0.06547239i -0.1803746+0.06547239i -0.1348810+0i
-## [6,] 0.2776278+0i -0.3641591-0.05255221i -0.3641591+0.05255221i -0.1346324+0i
-## [7,] 0.4421405+0i  0.2800373-0.21084754i  0.2800373+0.21084754i  0.1516443+0i
-##                        [,5]                   [,6]           [,7]
-## [1,]  0.05689043+0.4070934i  0.05689043-0.4070934i -0.08048642+0i
-## [2,] -0.09732871-0.1605719i -0.09732871+0.1605719i  0.37844564+0i
-## [3,] -0.14530870-0.2687923i -0.14530870+0.2687923i  0.68938603+0i
-## [4,] -0.21765776+0.0985287i -0.21765776-0.0985287i  0.25477422+0i
-## [5,]  0.55182290+0.0000000i  0.55182290+0.0000000i -0.17281023+0i
-## [6,] -0.07504621+0.2969250i -0.07504621-0.2969250i -0.43599917+0i
-## [7,] -0.10221182-0.4863983i -0.10221182+0.4863983i -0.30029850+0i</code></pre>
+##              [,1]                    [,2]                    [,3]          [,4]
+## [1,] 0.5287709+0i -0.61230734-0.11725972i -0.61230734+0.11725972i -0.3211792+0i
+## [2,] 0.2954214+0i  0.17711647+0.32796224i  0.17711647-0.32796224i  0.1386897+0i
+## [3,] 0.7212309+0i -0.01683149-0.02470228i -0.01683149+0.02470228i  0.8365796+0i
+## [4,] 0.3360856+0i  0.68666361+0.00000000i  0.68666361+0.00000000i -0.4215966+0i</code></pre>
 <pre class="r"><code>eigen(m2)$values #complex numbers</code></pre>
-<pre><code>## [1] 171.10825+ 0.00000i  27.68937+24.43841i  27.68937-24.43841i
-## [4]  29.99266+ 0.00000i -13.24140+25.30834i -13.24140-25.30834i
-## [7] -26.99687+ 0.00000i</code></pre>
+<pre><code>## [1] 35.655519+0.000000i -3.560947+2.312189i -3.560947-2.312189i
+## [4]  3.466375+0.000000i</code></pre>
 <pre class="r"><code>eigen(m2)$vectors #complex numbers</code></pre>
-<pre><code>##              [,1]                   [,2]                   [,3]          [,4]
-## [1,] 0.3839365+0i  0.5270944+0.00000000i  0.5270944+0.00000000i  0.6030066+0i
-## [2,] 0.3597106+0i -0.1200471+0.50258529i -0.1200471-0.50258529i -0.1428968+0i
-## [3,] 0.3198795+0i -0.2551619-0.15484912i -0.2551619+0.15484912i  0.1530026+0i
-## [4,] 0.4858235+0i  0.2544822+0.07904704i  0.2544822-0.07904704i -0.7302322+0i
-## [5,] 0.3350944+0i -0.1803746-0.06547239i -0.1803746+0.06547239i -0.1348810+0i
-## [6,] 0.2776278+0i -0.3641591-0.05255221i -0.3641591+0.05255221i -0.1346324+0i
-## [7,] 0.4421405+0i  0.2800373-0.21084754i  0.2800373+0.21084754i  0.1516443+0i
-##                        [,5]                   [,6]           [,7]
-## [1,]  0.05689043+0.4070934i  0.05689043-0.4070934i -0.08048642+0i
-## [2,] -0.09732871-0.1605719i -0.09732871+0.1605719i  0.37844564+0i
-## [3,] -0.14530870-0.2687923i -0.14530870+0.2687923i  0.68938603+0i
-## [4,] -0.21765776+0.0985287i -0.21765776-0.0985287i  0.25477422+0i
-## [5,]  0.55182290+0.0000000i  0.55182290+0.0000000i -0.17281023+0i
-## [6,] -0.07504621+0.2969250i -0.07504621-0.2969250i -0.43599917+0i
-## [7,] -0.10221182-0.4863983i -0.10221182+0.4863983i -0.30029850+0i</code></pre>
+<pre><code>##              [,1]                    [,2]                    [,3]          [,4]
+## [1,] 0.5287709+0i -0.61230734-0.11725972i -0.61230734+0.11725972i -0.3211792+0i
+## [2,] 0.2954214+0i  0.17711647+0.32796224i  0.17711647-0.32796224i  0.1386897+0i
+## [3,] 0.7212309+0i -0.01683149-0.02470228i -0.01683149+0.02470228i  0.8365796+0i
+## [4,] 0.3360856+0i  0.68666361+0.00000000i  0.68666361+0.00000000i -0.4215966+0i</code></pre>
 <pre class="r"><code>typeof(eigen(m2)$values)</code></pre>
 <pre><code>## [1] &quot;complex&quot;</code></pre>
 <pre class="r"><code>typeof(eigen(m2)$vectors)</code></pre>
@@ -452,36 +422,36 @@ my_letters &lt;- sample(letters,26,replace=FALSE)
 my_list &lt;- list(my_matrix, my_logical, my_letters)
 print(my_list)</code></pre>
 <pre><code>## [[1]]
-##           [,1]      [,2]       [,3]      [,4]
-## [1,] 0.2283064 0.5396007 0.26333383 0.5342128
-## [2,] 0.4307252 0.5481399 0.48955820 0.6877863
-## [3,] 0.1055550 0.9873353 0.03233561 0.3075030
-## [4,] 0.6658327 0.8153833 0.80197700 0.8973691
+##            [,1]      [,2]      [,3]      [,4]
+## [1,] 0.53092199 0.5433002 0.2879477 0.3795354
+## [2,] 0.53412476 0.5682809 0.9421207 0.7463077
+## [3,] 0.02040521 0.5485965 0.4949905 0.9911286
+## [4,] 0.35898932 0.3741381 0.9452412 0.4451403
 ## 
 ## [[2]]
-##   [1] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
-##  [13] FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE
-##  [25] FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
-##  [37]  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
-##  [49] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-##  [61] FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE
-##  [73] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE
-##  [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
-##  [97] FALSE FALSE  TRUE  TRUE
+##   [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE
+##  [13] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
+##  [25] FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE
+##  [37]  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [49]  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE
+##  [61]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+##  [73] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
+##  [85]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+##  [97]  TRUE FALSE  TRUE  TRUE
 ## 
 ## [[3]]
-##  [1] &quot;p&quot; &quot;x&quot; &quot;n&quot; &quot;v&quot; &quot;z&quot; &quot;o&quot; &quot;d&quot; &quot;r&quot; &quot;c&quot; &quot;t&quot; &quot;w&quot; &quot;u&quot; &quot;b&quot; &quot;s&quot; &quot;f&quot; &quot;j&quot; &quot;q&quot; &quot;a&quot; &quot;g&quot;
-## [20] &quot;k&quot; &quot;i&quot; &quot;m&quot; &quot;l&quot; &quot;y&quot; &quot;h&quot; &quot;e&quot;</code></pre>
+##  [1] &quot;x&quot; &quot;g&quot; &quot;l&quot; &quot;p&quot; &quot;j&quot; &quot;s&quot; &quot;f&quot; &quot;z&quot; &quot;w&quot; &quot;o&quot; &quot;r&quot; &quot;v&quot; &quot;d&quot; &quot;b&quot; &quot;m&quot; &quot;t&quot; &quot;h&quot; &quot;c&quot; &quot;k&quot;
+## [20] &quot;a&quot; &quot;i&quot; &quot;n&quot; &quot;u&quot; &quot;y&quot; &quot;q&quot; &quot;e&quot;</code></pre>
 <pre class="r"><code>new_list &lt;- list(my_list[[1]][2,2], my_list[[2]][2], my_list[[3]][2])
 print(new_list)</code></pre>
 <pre><code>## [[1]]
-## [1] 0.5481399
+## [1] 0.5682809
 ## 
 ## [[2]]
-## [1] FALSE
+## [1] TRUE
 ## 
 ## [[3]]
-## [1] &quot;x&quot;</code></pre>
+## [1] &quot;g&quot;</code></pre>
 <pre class="r"><code>typeof(my_list[[1]][2,2]) #double</code></pre>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 <pre class="r"><code>typeof(my_list[[2]][2]) #logical</code></pre>
@@ -490,7 +460,7 @@ print(new_list)</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <pre class="r"><code>new_vec &lt;- c(my_list[[1]][2,2], my_list[[2]][2], my_list[[3]][2])
 print(new_vec)</code></pre>
-<pre><code>## [1] &quot;0.548139916500077&quot; &quot;FALSE&quot;             &quot;x&quot;</code></pre>
+<pre><code>## [1] &quot;0.568280935753137&quot; &quot;TRUE&quot;              &quot;g&quot;</code></pre>
 <pre class="r"><code>typeof(new_vec) #character</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <pre class="r"><code>#3
@@ -499,95 +469,95 @@ my_unis &lt;- runif(min=0, max=10, n=26)
 my_letters &lt;- sample(LETTERS,26,replace=FALSE)
 d_frame &lt;- data.frame(my_unis,my_letters)
 print(d_frame)</code></pre>
-<pre><code>##     my_unis my_letters
-## 1  8.016261          Z
-## 2  1.338728          S
-## 3  3.954576          Q
-## 4  8.919959          Y
-## 5  5.426123          C
-## 6  6.382305          X
-## 7  6.940185          U
-## 8  8.800966          L
-## 9  6.304733          O
-## 10 6.110469          J
-## 11 9.104793          A
-## 12 7.164167          V
-## 13 3.707366          D
-## 14 1.169183          G
-## 15 8.425111          F
-## 16 9.209162          P
-## 17 6.513528          T
-## 18 4.496740          M
-## 19 9.492839          H
-## 20 2.493648          R
-## 21 7.446254          W
-## 22 4.236746          K
-## 23 4.330601          B
-## 24 1.218884          E
-## 25 9.269111          N
-## 26 8.143544          I</code></pre>
+<pre><code>##      my_unis my_letters
+## 1  6.5604136          V
+## 2  1.5592936          N
+## 3  9.1786207          E
+## 4  4.9427695          U
+## 5  7.2668477          L
+## 6  2.6041232          Q
+## 7  9.2769363          R
+## 8  2.2413235          A
+## 9  7.9916814          G
+## 10 9.7628067          P
+## 11 4.7184675          W
+## 12 9.3153818          Z
+## 13 7.8072261          Y
+## 14 0.2100381          J
+## 15 4.7090924          X
+## 16 0.9285445          S
+## 17 8.8883757          I
+## 18 2.9354788          M
+## 19 8.2577619          C
+## 20 4.6850067          O
+## 21 3.1955578          B
+## 22 4.4819004          F
+## 23 7.5996958          D
+## 24 5.7510192          K
+## 25 5.0137078          T
+## 26 1.8409933          H</code></pre>
 <pre class="r"><code>d_frame[sample(size=4,x=1:26,replace=FALSE),1]&lt;-NA
 print(d_frame)</code></pre>
-<pre><code>##     my_unis my_letters
-## 1        NA          Z
-## 2  1.338728          S
-## 3  3.954576          Q
-## 4  8.919959          Y
-## 5  5.426123          C
-## 6  6.382305          X
-## 7  6.940185          U
-## 8  8.800966          L
-## 9  6.304733          O
-## 10 6.110469          J
-## 11 9.104793          A
-## 12       NA          V
-## 13 3.707366          D
-## 14 1.169183          G
-## 15 8.425111          F
-## 16 9.209162          P
-## 17 6.513528          T
-## 18 4.496740          M
-## 19 9.492839          H
-## 20       NA          R
-## 21 7.446254          W
-## 22 4.236746          K
-## 23 4.330601          B
-## 24       NA          E
-## 25 9.269111          N
-## 26 8.143544          I</code></pre>
+<pre><code>##      my_unis my_letters
+## 1  6.5604136          V
+## 2  1.5592936          N
+## 3  9.1786207          E
+## 4  4.9427695          U
+## 5  7.2668477          L
+## 6  2.6041232          Q
+## 7  9.2769363          R
+## 8  2.2413235          A
+## 9  7.9916814          G
+## 10        NA          P
+## 11 4.7184675          W
+## 12 9.3153818          Z
+## 13 7.8072261          Y
+## 14 0.2100381          J
+## 15 4.7090924          X
+## 16        NA          S
+## 17 8.8883757          I
+## 18 2.9354788          M
+## 19        NA          C
+## 20 4.6850067          O
+## 21 3.1955578          B
+## 22 4.4819004          F
+## 23 7.5996958          D
+## 24 5.7510192          K
+## 25 5.0137078          T
+## 26        NA          H</code></pre>
 <pre class="r"><code>which(is.na(d_frame))</code></pre>
-<pre><code>## [1]  1 12 20 24</code></pre>
+<pre><code>## [1] 10 16 19 26</code></pre>
 <pre class="r"><code>d_frame &lt;- d_frame[order(d_frame$my_letters),]
 print(d_frame)</code></pre>
-<pre><code>##     my_unis my_letters
-## 11 9.104793          A
-## 23 4.330601          B
-## 5  5.426123          C
-## 13 3.707366          D
-## 24       NA          E
-## 15 8.425111          F
-## 14 1.169183          G
-## 19 9.492839          H
-## 26 8.143544          I
-## 10 6.110469          J
-## 22 4.236746          K
-## 8  8.800966          L
-## 18 4.496740          M
-## 25 9.269111          N
-## 9  6.304733          O
-## 16 9.209162          P
-## 3  3.954576          Q
-## 20       NA          R
-## 2  1.338728          S
-## 17 6.513528          T
-## 7  6.940185          U
-## 12       NA          V
-## 21 7.446254          W
-## 6  6.382305          X
-## 4  8.919959          Y
-## 1        NA          Z</code></pre>
+<pre><code>##      my_unis my_letters
+## 8  2.2413235          A
+## 21 3.1955578          B
+## 19        NA          C
+## 23 7.5996958          D
+## 3  9.1786207          E
+## 22 4.4819004          F
+## 9  7.9916814          G
+## 26        NA          H
+## 17 8.8883757          I
+## 14 0.2100381          J
+## 24 5.7510192          K
+## 5  7.2668477          L
+## 18 2.9354788          M
+## 2  1.5592936          N
+## 20 4.6850067          O
+## 10        NA          P
+## 6  2.6041232          Q
+## 7  9.2769363          R
+## 16        NA          S
+## 25 5.0137078          T
+## 4  4.9427695          U
+## 1  6.5604136          V
+## 11 4.7184675          W
+## 15 4.7090924          X
+## 13 7.8072261          Y
+## 12 9.3153818          Z</code></pre>
 <pre class="r"><code>mean(d_frame$my_unis, na.rm=TRUE)</code></pre>
-<pre><code>## [1] 6.351046</code></pre>
+<pre><code>## [1] 5.496953</code></pre>
 
 
 
