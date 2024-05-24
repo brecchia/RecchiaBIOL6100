@@ -6,7 +6,6 @@ output: html_document
 ---
 
 ```{r}
-
 # 1
 x <- 1.1
 a <- 2.2
