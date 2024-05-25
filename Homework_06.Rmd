@@ -15,21 +15,28 @@ summary(z)
 ```
 
 # Open libraries
-```{r,echo=FALSE,message=FALSE,warning=FALSE}
+```{r,message=FALSE,warning=FALSE}
 library(ggplot2) # for graphics
 library(MASS) # for maximum likelihood estimation
 ```
 
-#Read in data vector
+# Read in data vector
 #```{r}
-# quick and dirty, a truncated normal distribution to work on the solution set
 
-#z <- rnorm(n=3000,mean=0.2)
-#z <- data.frame(1:3000,z)
-#names(z) <- list("ID","myVar")
-#z <- z[z$myVar>0,]
-#str(z)
-#summary(z$myVar)
+quick and dirty, a truncated normal distribution to work on the solution set"
+
+z <- rnorm(n=3000,mean=0.2)
+
+z <- data.frame(1:3000,z)
+
+names(z) <- list("ID","myVar")
+
+z <- z[z$myVar>0,]
+
+str(z)
+
+summary(z$myVar)
+
 #```
 
 # Plot histogram of data
