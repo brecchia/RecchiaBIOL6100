@@ -134,14 +134,14 @@ p1 + stat
 ```
 
 # Plot histogram of data (original data)
-```{r,echo=FALSE,message=FALSE,warning=FALSE}
+```{r,message=FALSE,warning=FALSE}
 p1 <- ggplot(data=z, aes(x=myVar, y=..density..)) +
   geom_histogram(color="grey60",fill="cornsilk",size=0.2) 
 print(p1)
 ```
 
 # Plot normal probability density (original data)
-```{r,echo=FALSE,message=FALSE,warning=FALSE}
+```{r,message=FALSE,warning=FALSE}
 meanML <- normPars$estimate["mean"]
 sdML <- normPars$estimate["sd"]
 
