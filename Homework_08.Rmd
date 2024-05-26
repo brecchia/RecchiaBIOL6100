@@ -12,24 +12,21 @@ library(dplyr)
 #1
 data(iris)
 class(iris)
-glimpse(iris)
-#observations= 150, variables= 5
+glimpse(iris) #observations= 150, variables= 5
 
 #2
 iris1 <- filter(iris,
                 Species=="virginica" | Species=="versicolor",
                 Sepal.Length <6,
                 Sepal.Width >2.5)
-glimpse(iris1)
-#observations= 22, variables= 5
+glimpse(iris1) #observations= 22, variables= 5
 
 #3
 iris2 <- select(iris1, 
                 Species, 
                 Sepal.Length, 
                 Sepal.Width)
-glimpse(iris2)
-#observations= 22, variables= 3
+glimpse(iris2) #observations= 22, variables= 3
 
 #4
 iris3 <- arrange(iris2, desc(Sepal.Length))
@@ -38,8 +35,7 @@ head(iris3,6)
 #5
 iris4 <- mutate(iris3,
                 Sepal.Area = Sepal.Length * Sepal.Width)
-glimpse(iris4)
-#observations= 22, variables= 4
+glimpse(iris4) #observations= 22, variables= 4
 
 #6
 iris5 <- summarize(iris4,
