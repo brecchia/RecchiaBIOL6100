@@ -1,0 +1,69 @@
+---
+title: "Homework_07"
+author: "Benjamin Recchia"
+date: "2024-05-25"
+output: html_document
+---
+
+```{r,message=FALSE}
+library(tidyverse)
+
+# 1
+#Ongoing study: relationship between lecture and lab exam scores
+#Hypothesis: if a student has a higher lecture exam score, then they will also have a higher lab exam score
+#Pattern: positive slope of linear regression with significant p-value
+
+# 2
+n <- 40 #enrollment in the course
+
+lecturen <- n #each enrolled student has a lecture exam score
+lecturemean <- 80 #mean of four lecture exam scores in course
+lecturesd <- 10 #sd of four lecture exam scores in course
+
+labn <- n #each enrolled student has a lab exam score
+labmean <- 40 #mean of four lab exam scores in course
+labsd <- 5 #sd of four lab exam scores in course
+
+# 3
+lecture_exam <- rnorm(n=lecturen,mean=lecturemean,sd=lecturesd)
+#generate simulated lecture exam data (hypothetically independent variable)
+lab_exam <- lecture_exam/2+rnorm(n=labn,mean=lecturemean/2-labmean,sd=labsd)
+#generate simulated lab exam data (hypothetically dependent variable) from lecture exam data. Lab exams are half as many points as lecture exams, and I introduced some random normal variation based on the sd of the lab exam scores.
+ID <- 1:n #identifier column
+regData <- data.frame(ID,lecture_exam,lab_exam) #generate data frame
+
+# 4
+regModel <- lm(lab_exam~lecture_exam,data=regData) #generate linear regression model based on simulated data
+summary(regModel)
+unlist(summary(regModel))$coefficients8 #extract p-value from linear regression summary
+
+regPlot <- ggplot(regData) +
+  aes(x=lecture_exam,y=lab_exam) +
+  geom_point() +
+  stat_smooth(method=lm,se=0.99)
+print(regPlot) #plot linear regression model with 99% confidence
+
+ggsave(filename="Homework7RegressionPlot.pdf",
+       plot=regPlot,
+       device="pdf")
+
+#5
+#Using the parameters below, I generated the following p-values over 10 trials. Thus, these realistic parameters generate significant p-values.
+
+#lecturen <- 40
+#lecturemean <- 80
+#lecturesd <- 10
+
+#labn <- 40
+#labmean <- 40
+#labsd <- 5
+
+#simulated p-values (1.65e-09, 5.08e-10, 1.60e-06, 1.28e-05, 9.31e-09, 7.54e-05, 7.45e-09, 7.11e-10, 3.00e-08, 1.84e-06)
+
+#6
+#While changing the means does not impact the p-value of this linear regression, changing the variance does. Larger variance in labsd appears to decrease p, whereas larger variance in lecturesd appears to increase p.
+
+#7
+#The smallest sample size that consistently produces significant (<0.01) p-values is n=25 (n=20 had frequent, though not exclusivly, insignificant p-vaues).
+
+```
