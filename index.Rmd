@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Homework 7](https://brecchia.github.io/RecchiaBIOL6100/Homework_07)
 
-[Homework 8](https://brecchia.github.io/RecchiaBIOL6100/Homework_09)
+[Homework 8](https://brecchia.github.io/RecchiaBIOL6100/Homework_08)
 
 [Homework 9](https://brecchia.github.io/RecchiaBIOL6100/Homework_09)
 
