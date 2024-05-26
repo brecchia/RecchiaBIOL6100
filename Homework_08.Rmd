@@ -1,0 +1,89 @@
+---
+title: "Homework_08"
+author: "Benjamin Recchia"
+date: "2024-05-26"
+output: html_document
+---
+
+```{r,message=FALSE}
+library(tidyverse)
+library(dplyr)
+
+#1
+data(iris)
+class(iris)
+glimpse(iris)
+#observations= 150, variables= 5
+
+#2
+iris1 <- filter(iris,
+                Species=="virginica" | Species=="versicolor",
+                Sepal.Length <6,
+                Sepal.Width >2.5)
+glimpse(iris1)
+#observations= 22, variables= 5
+
+#3
+iris2 <- select(iris1, 
+                Species, 
+                Sepal.Length, 
+                Sepal.Width)
+glimpse(iris2)
+#observations= 22, variables= 3
+
+#4
+iris3 <- arrange(iris2, desc(Sepal.Length))
+head(iris3,6)
+
+#5
+iris4 <- mutate(iris3,
+                Sepal.Area = Sepal.Length * Sepal.Width)
+glimpse(iris4)
+#observations= 22, variables= 4
+
+#6
+iris5 <- summarize(iris4,
+                   mean(Sepal.Length),
+                   mean(Sepal.Width),
+                   Number=n())
+print(iris5)
+
+#7
+iris6 <- iris4 %>%
+  group_by(Species) %>%
+  summarize(mean(Sepal.Length),
+            mean(Sepal.Width),
+            Number=n())
+print(iris6)
+
+#8
+irisFinal <- iris %>%
+  filter(Species=="virginica" | Species=="versicolor",
+         Sepal.Length <6,
+         Sepal.Width >2.5) %>%
+  select(Species,
+         Sepal.Length,
+         Sepal.Width) %>%
+  arrange(desc(Sepal.Length)) %>%
+  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %>%
+  group_by(Species) %>%
+  summarize(mean(Sepal.Length),
+            mean(Sepal.Width),
+            Number=n())
+print(irisFinal)
+
+#9
+iris_longer <- data.frame(
+  Measure=c(
+    rep("Sepal.Length",150),
+    rep("Sepal.Width",150),
+    rep("Petal.Length",150),
+    rep("Petal.Width",150)),
+  Value=c(
+    iris[,"Sepal.Length"],
+    iris[,"Sepal.Width"],
+     iris[,"Petal.Length"],
+    iris[,"Petal.Width"]))
+
+iris_longer
+```
