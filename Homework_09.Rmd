@@ -197,23 +197,222 @@ r2
 plot1 <- graph_results(x_var=x, y_var=y) #plot data and linear regression
 ```
 
-# #3:
 
-smallest sample size that achieves >95% likelihood of >95% confidence in significant result
+# #3: Part A: Generate p Values for Multiple Sets of Random Data
+```{r, message=FALSE,warning=FALSE}
+# FUNCTIONS --------------------
 
-generate random data
-calculate stats
-pull p value
-repeat 100x storing each in vector
-calculate percent sig
+#######
+# FUNCTION: gen_data
+# generate random data
+# input: parameters n, lecturemean, lecturesd, labmean, labsd
+# output: data frame of lecture and lab exam data with an ID column
+#------------------
+gen_data <- function(n=100,
+                     lecturemean=80,
+                     lecturesd=10,
+                     labmean=40,
+                     labsd=5) {
+  lecture_exam <- rnorm(n=n,mean=lecturemean,sd=lecturesd)
+  #generate simulated lecture exam data (hypothetically independent variable)
+  lab_exam <- lecture_exam/2+rnorm(n=n,mean=lecturemean/2-labmean,sd=labsd)
+  #generate simulated lab exam data (hypothetically dependent variable) from lecture exam data. Lab exams are half as many points as lecture exams, and I introduced some random normal variation based on the sd of the lab exam scores.
+  ID <- 1:n #identifier column
+  data_frame <- data.frame(ID,lecture_exam,lab_exam) #generate data frame
+  return(data_frame)
+  }
 
-change sample size up 1
-repeat above 10-100 storing each in vector
+#######
+# FUNCTION: calculate_linreg
+# fit an ordinary least squares regression
+# input: x and y vectors of same length
+# output: entire summary of regression model
+#------------------
+calculate_linreg <- function(x_var=runif(10),
+                            y_var=runif(10)) {
+  data_frame <- data.frame(x_var,y_var)
+  reg_model <- lm(y_var ~ x_var)
+  return(unlist(summary(reg_model)))
+}
 
-graph sample size (x) versus likelihood of significant results (y)
+#######
+# FUNCTION: summarize_output
+# pull elements from model summary list
+# input: list from summary call of lm
+# output: vector of regression residuals
+#------------------
+summarize_output <- function(z=NULL) {
+  if(is.null(z)) {
+    z <- summary(lm(runif(10)~runif(10)))
+  }
+    return(z$coefficients8)
+}
 
+#######
+# FUNCTION: graph_results
+# one line description
+# input: x
+# output: x
+#------------------
+graph_results <- function(x_var=runif(10),
+                          y_var=runif(10)) {
+  data_frame <- data.frame(x_var,y_var)
+p1 <- ggplot2::ggplot(data_frame) + aes(x=x_var,y=y_var) + geom_point() + stat_smooth(method="lm")
+  suppressMessages(print(p1))
+}
 
+# PRELIMINARY CALLS --------------------
 
-ggsave(filename="Homework9RegressionPlot.pdf",
-       plot=regPlot,
-       device="pdf")
+library(tidyverse)
+library(ggplot2)
+
+# GLOBAL VARIABLES --------------------
+
+n <- 40 #enrollment in the course
+lecturemean <- 80 #mean of four lecture exam scores in course
+lecturesd <- 10 #sd of four lecture exam scores in course
+labmean <- 40 #mean of four lab exam scores in course
+labsd <- 5 #sd of four lab exam scores in course
+
+# PROGRAM BODY --------------------
+
+trials <- 100 #sets of random data and number of p values per sample size
+pvals <- rep(FALSE,trials) #set up vector for p values to be stored in
+
+for (i in 1:trials) {
+
+  temp_1 <- gen_data(n=n,
+                   lecturemean = lecturemean,
+                   lecturesd = lecturesd,
+                   labmean = labmean,
+                   labsd = labsd) #generate data frame from global variables
+
+  x <- temp_1$lecture_exam #extract x from data frame
+  y <- temp_1$lab_exam #extract y from data frame
+
+  temp_2 <- calculate_linreg(x_var=x,y_var=y) #perform linear regression
+
+  pval <- summarize_output(temp_2) #extract p value from linear regression stats
+
+  pvals[i] <- pval #store new pval in vector of pvals
+  }
+
+max(pvals) #return maximum pval generated with these parameters
+```
+
+# #3: Part B: Determine Sample Size Needed for Significant p Value
+```{r, message=FALSE,warning=FALSE}
+# FUNCTIONS --------------------
+
+#######
+# FUNCTION: gen_data
+# generate random data
+# input: parameters n, lecturemean, lecturesd, labmean, labsd
+# output: data frame of lecture and lab exam data with an ID column
+#------------------
+gen_data <- function(n=100,
+                     lecturemean=80,
+                     lecturesd=10,
+                     labmean=40,
+                     labsd=5) {
+  lecture_exam <- rnorm(n=n,mean=lecturemean,sd=lecturesd)
+  #generate simulated lecture exam data (hypothetically independent variable)
+  lab_exam <- lecture_exam/2+rnorm(n=n,mean=lecturemean/2-labmean,sd=labsd)
+  #generate simulated lab exam data (hypothetically dependent variable) from lecture exam data. Lab exams are half as many points as lecture exams, and I introduced some random normal variation based on the sd of the lab exam scores.
+  ID <- 1:n #identifier column
+  data_frame <- data.frame(ID,lecture_exam,lab_exam) #generate data frame
+  return(data_frame)
+  }
+
+#######
+# FUNCTION: calculate_linreg
+# fit an ordinary least squares regression
+# input: x and y vectors of same length
+# output: entire summary of regression model
+#------------------
+calculate_linreg <- function(x_var=runif(10),
+                            y_var=runif(10)) {
+  data_frame <- data.frame(x_var,y_var)
+  reg_model <- lm(y_var ~ x_var)
+  return(unlist(summary(reg_model)))
+}
+
+#######
+# FUNCTION: summarize_output
+# pull elements from model summary list
+# input: list from summary call of lm
+# output: vector of regression residuals
+#------------------
+summarize_output <- function(z=NULL) {
+  if(is.null(z)) {
+    z <- summary(lm(runif(10)~runif(10)))
+  }
+    return(z$coefficients8)
+}
+
+#######
+# FUNCTION: graph_results
+# one line description
+# input: x
+# output: x
+#------------------
+graph_results <- function(x_var=runif(10),
+                          y_var=runif(10)) {
+  data_frame <- data.frame(x_var,y_var)
+p1 <- ggplot2::ggplot(data_frame) + aes(x=x_var,y=y_var) + geom_point() + stat_smooth(method="lm")
+  suppressMessages(print(p1))
+}
+
+# PRELIMINARY CALLS --------------------
+
+library(tidyverse)
+library(ggplot2)
+
+# GLOBAL VARIABLES --------------------
+
+n <- 40 #enrollment in the course
+lecturemean <- 80 #mean of four lecture exam scores in course
+lecturesd <- 10 #sd of four lecture exam scores in course
+labmean <- 40 #mean of four lab exam scores in course
+labsd <- 5 #sd of four lab exam scores in course
+
+# PROGRAM BODY --------------------
+
+p_max <- 0.01 #desired p value for significant data
+trials <- 100 #sets of random data and number of p values per sample size
+minn <- 5 #minimum sample size to test, must be greater than 1, not sure why otherwise summarize_output gives NULL instead of p value
+maxn <- 100 #maximum sample size to test
+pvals <- rep(FALSE,trials) #set up vector for p values to be stored in
+maxpvals <- rep(FALSE,maxn) #set up vector for maximum p value (from each sample size) to be stored in
+
+for (j in minn:maxn) {
+
+  for (i in 1:trials) {
+  
+    temp_1 <- gen_data(n=j,
+                   lecturemean = lecturemean,
+                   lecturesd = lecturesd,
+                   labmean = labmean,
+                   labsd = labsd) #generate data frame from global variables
+
+    x <- temp_1$lecture_exam #extract x from data frame
+    y <- temp_1$lab_exam #extract y from data frame
+
+    temp_2 <- calculate_linreg(x_var=x,y_var=y) #perform linear regression
+
+    pval <- summarize_output(temp_2) #extract p value from linear regression stats
+
+    pvals[i] <- pval #store new pval in vector of pvals
+    }
+
+  maxpvals[j] <- max(pvals) #return maximum pval generated with these parameters
+  }
+
+data_maxpvals <- data.frame(1:maxn,maxpvals) #create dataframe of sample size and max p-value
+
+smallest_n <- head(subset(data_maxpvals,maxpvals < p_max & X1.maxn > minn),1) #return smallest sample size above min with a maximum p-value less than p-max
+smallest_n #AKA the sample size needed for significant results given these parameters
+
+#is class size AZA possible sample size larger than smallest significant sample size?
+smallest_n$X1.maxn < n
+```
