@@ -1,0 +1,128 @@
+---
+title: "Homework_10"
+author: "Benjamin Recchia"
+date: "2024-05-28"
+output: html_document
+---
+
+# #1
+```{r,warning=FALSE,message=FALSE}
+
+vector <- sample(0:10,100,replace=TRUE) # create vector with random number of 0s
+vector
+counter <- 0 # start counter at 0
+
+for (i in seq_along(vector)){
+  if(vector[i]==0) counter <- counter + 1
+  } # check each vector position for a 0, if 0, count up by 1
+
+counter
+```
+
+# #2
+```{r,warning=FALSE,message=FALSE}
+
+vector <- sample(0:10,100,replace=TRUE) #create vector with random number of 0s
+vector
+
+length(vector[vector==0]) #with subsetting
+
+#or
+
+sum(vector==0) #with logical operators
+```
+
+# #3
+```{r,warning=FALSE,message=FALSE}
+
+#------------------------------------
+# FUNCTION: prod_matrix
+# create matrix multiplying row and column numbers
+# input:  row_n: row numbers, col_n: column numbers
+# output:  prod_matrix: multiplied matrix
+#------------------------------------
+
+make_matrix <- function(row_n=3,col_n=4) {
+
+  vector <- rep(1:col_n, each=row_n)*rep(1:row_n, col_n)
+  prod_matrix <- matrix(vector,nrow=row_n,ncol=col_n)
+
+return(prod_matrix)
+
+} #end of make_matrix
+#------------------------------------
+make_matrix(3,4)
+make_matrix(2,8)
+```
+
+# #4
+```{r,warning=FALSE,message=FALSE}
+
+#a.
+# observed mean and sd for each group
+meanA <- 10
+sdA <- 1
+meanB <- 15
+sdB <- 2
+meanC <- 20
+sdC <- 3
+
+# sample size for each group
+n <- 100
+
+# generate simulted data
+groupA <- rnorm(n,meanA,sdA)
+groupB <- rnorm(n,meanB,sdB)
+groupC <- rnorm(n,meanC,sdC)
+
+# store simulated data in dataframe
+data_frame <- data.frame(Group=c(rep("A",n),
+                       rep("B",n),
+                       rep("C",n)),
+               RV=c(groupA,
+                    groupB,
+                    groupC))
+data_frame
+
+#b.
+# create function to randomize data
+
+#------------------------------------
+# FUNCTION: shuffle_data
+# shuffle data
+# input: 3 data groups as 2 variable (group, RV) dataframe
+# output: 3 data groups shuffled as 2 variable (group, RV) dataframe and the mean RV for each group
+#------------------------------------
+
+shuffle_data_mean <- function(df=data_frame) {
+
+    df$RV <- sample(df$RV) # shuffle data
+    mean <- as.numeric(tapply(df$RV,df$Group,mean)) # take the mean of each (shuffled) group and store as vector
+return(mean)
+
+} #end of shuffle_data
+#------------------------------------
+
+# c.
+replicates <- 100 # typically 1000
+means <- data.frame(replicates=rep(NA,replicates),A=NA,B=NA,C=NA) # generate empty dataframe
+
+for (i in 1:replicates) {
+    temp1 <- c(i,shuffle_data_mean(data_frame)) # shuffle data and calculate means for each group
+    means[i,] <- temp1 # store means in dataframe 
+  } # repeat for number of replicates
+means
+
+# d.
+library(ggplot2)
+qplot(means$A) + geom_vline(xintercept=meanA) #plot of group A
+qplot(means$B) + geom_vline(xintercept=meanB) #plot of group B
+qplot(means$C) + geom_vline(xintercept=meanC) #plot of group C
+
+#the observed means of groups A and C are very different from their simulated means, but the mean of group B is similar to its simulated means. This is because the mean of all three groups' observed means was equal to the observed mean of group B.
+
+```
+
+
+
+
