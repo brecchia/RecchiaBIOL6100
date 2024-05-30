@@ -1,0 +1,56 @@
+---
+title: "Homework_11"
+author: "Benjamin Recchia"
+date: "2024-05-29"
+output: html_document
+---
+
+# #1
+data downloaded and stored in project folder
+
+# #2
+```{r,warning=FALSE,message=FALSE}
+
+file_folder_all <- "NEON_count-landbird/" #folder of folders
+file_folder_names <- list.files(path=file_folder_all) #each year folder vector
+file_names_countdata <- rep(NA,length(file_folder_names)) #empty vector
+
+for (i in 1:length(file_folder_names)) {
+  #extract count data file names from each folder
+file_names <- list.files(paste(file_folder_all,file_folder_names[i],"/",sep=""))
+file_names_countdata[i] <- file_names[3]
+}
+```
+
+# #3-5
+```{r,warning=FALSE,message=FALSE}
+#4
+data_frame <- data.frame(FileName=rep(NA,length(file_folder_names)),Year=NA,Abundance=NA,Richness=NA) # generate empty dataframe
+
+#5
+for (i in 1:length(file_folder_names)) { #these actions were coded simply enough to not need their own functions
+  
+  #create csv path name, extract year
+  csv <- paste(file_folder_all,file_folder_names[i],"/",file_names_countdata[i],sep="")
+  temp1 <- regmatches(csv,regexpr("countdata.(.+).basic",csv))
+  year <- gsub("[^0-9-]", "", temp1)
+
+  #extract data columns needed, clean data
+  data <- read.table(csv, sep=",", header=TRUE)
+  data_sub <- data[,c("pointCountMinute","scientificName")]
+  data_clean <- data_sub[complete.cases(data_sub),]
+
+  #calculate abundance
+  abundance <- sum(data_clean$pointCountMinute)
+
+  #calculate richness
+  richness <- length(unique(data_clean$scientificName))
+
+  #store results in dataframe
+  data_frame[i,] <- data.frame(file_names_countdata[i],
+               year,
+               abundance,
+               richness)
+}
+data_frame #with summary statistics
+```
