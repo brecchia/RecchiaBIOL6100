@@ -63,7 +63,7 @@ b4 <- ggplot(data=d, mapping=(aes(x=Species,y=Petal.Width,fill=Species))) + geom
 
 b1/b2/b3/b4
 
-#proportional sepal/petal diagrams (from radar plots) using mean values of variables
+#dimensionally proportional sepal/petal diagrams (from radar plots) using mean values of variables
 
 #create empty dataframe
 empty <- data.frame(Sepal.Length=rep(NA,5),
@@ -144,10 +144,3 @@ PetalSize <- radarchart(petals,
 
 #similar plots could be created comparing the sepal versus petal sizes for each species
 ```
-
-
-
-
-
-
-
