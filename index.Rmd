@@ -1,5 +1,5 @@
 ---
-title: "index"
+title: "BIOL 6100 Computational Biology"
 author: "Benjamin Recchia"
 date: "2024-05-19"
 output: html_document
@@ -8,8 +8,6 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-# BIOL 6100 Computational Biology
 
 [Homework 1](https://brecchia.github.io/RecchiaBIOL6100/Homework_01)
 
